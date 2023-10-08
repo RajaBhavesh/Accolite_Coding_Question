@@ -1,0 +1,55 @@
+//by Raja Bhavesh
+//Difficulty-> Easy
+//Question link-> https://practice.geeksforgeeks.org/problems/sum-of-large-numbers5827/1
+
+C++ Code->
+string add(string s1, string s2){
+   	    // Code here
+   	    string ans="";
+   	    int index=0;
+   	    int n=s1.size();
+   	    int m=s2.size();
+   	    int z=min(n,m);
+   	    reverse(s1.begin(),s1.end());
+   	    reverse(s2.begin(),s2.end());
+   	    
+   	    int carry=0;
+   	    for(int i=0;i<z;i++){
+   	        int first=s1[i]-'0';
+   	        int second=s2[i]-'0';
+   	        int sum=first+second+carry;
+   	        carry=sum/10;
+   	        string ch=to_string(sum%10);
+   	        ans+=ch;
+   	        index++;
+   	    }
+   	    
+   	    if(index<n){
+   	        for(int j=index;j<n;j++){
+   	          //  if(carry){
+   	                int z=s1[j]-'0'+carry; 
+   	                carry=z/10;
+   	                string chh=to_string(z%10);
+   	                ans+=chh;
+   	               
+   	            }
+   	       // }
+   	    }
+   	    if(index<m){
+   	        for(int j=index;j<m;j++){
+   	            //if(carry){
+   	                int z=s2[j]-'0'+carry;
+   	                string chh=to_string(z%10);
+   	                ans+=chh;
+   	                carry=z/10;
+   	          //  }
+   	        }
+   	        
+   	    }if(carry){
+   	            string chhh=to_string(carry);
+   	            ans+=chhh;
+   	            
+   	        }
+   	    reverse(ans.begin(),ans.end());
+   	    return ans;
+   	}    
