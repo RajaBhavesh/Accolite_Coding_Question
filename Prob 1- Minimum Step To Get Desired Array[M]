@@ -1,0 +1,47 @@
+//by Raja Bhavesh
+//Difficulty Level-> Medium
+//Question Link-> https://practice.geeksforgeeks.org/problems/minimum-steps-to-get-desired-array5519/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+C++ Code->
+//Time Complexity-> O(N^2) 
+//Space Complexity-> O(1)
+
+  int countMinOperations(int arr[], int n) {
+        // code here
+        //Tips:- Try to think reverse approach means try to covert given array to zero array using the given operations
+        int ans=0;//this is used to count the minimum operation to achive the required result
+        while(true){
+            int i=0;
+            int countzero=0;
+            for(i=0;i<n;i++){
+                if(arr[i]%2!=0){
+                    break;
+                }
+                if(arr[i]==0){
+                    countzero++;
+                }
+            }
+            if(countzero==n){// means all array elements are zero that is base conditon achieved then break
+                break;
+            }
+            if(i==n){/// means all array elements are even
+                for(int j=0;j<n;j++){
+                    arr[j]=arr[j]/2;
+                }
+                ans++;
+            }
+            if(i!=n){// not all elements are even
+                for(int j=i;j<n;j++){
+                    if(arr[j]%2!=0){
+                        arr[j]--;
+                        ans++;
+                    }
+                }
+            }
+            
+        }
+        return ans;
+    }
+
+
+// Thanks!!!!!!!!!!!!!!!!!!!!!!!!!!!!
