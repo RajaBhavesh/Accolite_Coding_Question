@@ -1,0 +1,111 @@
+//by Raja Bhavesh
+//Difficulty Level- Medium
+//Question link-> https://practice.geeksforgeeks.org/problems/maximum-triplet-product--170647/1
+
+//Method 1->
+//It is Brute force approach. Int his approach we check all the triplets using three nested loops.
+//Time Complexity-> O(N)^3
+//Space Complexity-> O(1)
+//C++ Code->
+int maxProduct(int arr[], int n)
+{
+    // if size is less than 3, no triplet exists
+    if (n < 3)
+        return -1;
+ 
+    // will contain max product
+    int max_product = INT_MIN;
+ 
+    for (int i = 0; i < n - 2; i++)
+        for (int j = i + 1; j < n - 1; j++)
+            for (int k = j + 1; k < n; k++)
+                max_product = max(max_product,
+                        arr[i] * arr[j] * arr[k]);
+ 
+    return max_product;
+}
+
+//Method 2->
+//In this method we try to find the product of firstmax*secondmax*thirdmax
+//then another product will also be found as firstmin*secondmin*firstmax
+//then return the max of both
+//use sort stl function to sort the array
+//Time Complexity-> O(NlogN)
+//Space Complexity-> O(1)
+//C++ Code->
+
+int maxProduct(int arr[], int n)
+{
+    // if size is less than 3, no triplet exists
+    if (n < 3)
+        return -1;
+ 
+    // Sort the array in ascending order
+    sort(arr, arr + n);
+ 
+    // Return the maximum of product of last three
+    // elements and product of first two elements
+    // and last element
+    return max(arr[0] * arr[1] * arr[n - 1],
+               arr[n - 1] * arr[n - 2] * arr[n - 3]);
+}
+
+//Method 3->
+//Same as approach 2 but instead of using sort function we traverse the array and find the first max,second max,third max along with first min,second min etc;
+//Time Complexity-> O(N)
+//Space Complexity-> O(1)
+
+int maxProduct(int arr[], int n)
+{
+    // if size is less than 3, no triplet exists
+    if (n < 3)
+        return -1;
+ 
+    // Initialize Maximum, second maximum and third
+    // maximum element
+    int maxA = INT_MIN, maxB = INT_MIN, maxC = INT_MIN;
+ 
+    // Initialize Minimum and second minimum element
+    int minA = INT_MAX, minB = INT_MAX;
+ 
+    for (int i = 0; i < n; i++)
+    {
+        // Update Maximum, second maximum and third
+        // maximum element
+        if (arr[i] > maxA)
+        {
+            maxC = maxB;
+            maxB = maxA;
+            maxA = arr[i];
+        }
+ 
+        // Update second maximum and third maximum element
+        else if (arr[i] > maxB)
+        {
+            maxC = maxB;
+            maxB = arr[i];
+        }
+ 
+        // Update third maximum element
+        else if (arr[i] > maxC)
+            maxC = arr[i];
+ 
+        // Update Minimum and second minimum element
+        if (arr[i] < minA)
+        {
+            minB = minA;
+            minA = arr[i];
+        }
+ 
+        // Update second minimum element
+        else if(arr[i] < minB)
+            minB = arr[i];
+    }
+ 
+    return max(minA * minB * maxA,
+               maxA * maxB * maxC);
+}
+
+
+
+///Thanks!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
