@@ -1,0 +1,29 @@
+//by Raja Bhavesh
+//Difficulty Level-> Medium
+//Question link-> https://practice.geeksforgeeks.org/problems/find-element-occuring-once-when-all-other-are-present-thrice/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+//Method 1->
+//Using Sorting
+//Time Complexity-> O(NlogN)
+//Space Complexity-> O(1)
+
+C++ Code->
+int singleElement(int arr[] ,int N) {
+        // code here
+        sort(arr,arr+N);
+        int count=1;
+        for(int i=1;i<N;i++){
+            if(arr[i]==arr[i-1]){
+                count++;
+            }
+            if(arr[i]!=arr[i-1]){
+                if(count<3){
+                    return arr[i-1];
+                }
+                count=1;
+            }
+        }
+        return arr[N-1];
+    }
+
+//Thanks !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
