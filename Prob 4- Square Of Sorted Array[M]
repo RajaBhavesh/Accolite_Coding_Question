@@ -1,0 +1,107 @@
+//by Raja Bhavesh
+//Difficulty Level-> Easy to Medium
+//Question link-> https://leetcode.com/problems/squares-of-a-sorted-array/description/
+
+//Method 1->
+//Simple and Easy approach using the concept of squaring the elemnt of the array and then sort it using stl functions
+//Time Complexity-> O(NlogN)
+//Space Complexity-> O(1)
+
+C++ Code->
+// Function to sort an square array
+vector sortSquares(vector<int>arr)
+{
+    // First convert each array elements
+    // into its square
+    for (int i = 0; i < n; i++)
+        arr[i] = arr[i] * arr[i];
+ 
+    // Sort an array using "sort STL function "
+    sort(arr, arr + n);
+    return arr;
+}
+
+//Method 2->
+//Divide array into two parts - one for negative element other for positive ones
+//then use the concept of merge sort as we have two sorted arrays
+//Time Complexity-> O(N)
+//Space Complexity-> O(N)
+
+//C++ code->
+vector<int> sortedSquares(vector<int>& nums) {
+        //first try to break the sorted array into two parts
+        //neg and postive 
+        //to do this find upto which index it is in negative 
+        int k;//this store the required index
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>=0){
+                k=i;
+                break;
+            }
+        }
+        //now we use the logic of merge sort as we have two sorted array
+        //as we have to do square so for negative one array we have to travel in reverse side
+        int i=k-1;
+        int j=k;
+        //int index=0;
+        vector<int>temp;//used to store the square of elements in correct order
+        while(i>=0&&j<nums.size()){
+            if(nums[i]*nums[i]<nums[j]*nums[j]){
+                temp.push_back(nums[i]*nums[i]);
+                i--;
+             //   index++;
+            }
+            else{
+                temp.push_back(nums[j]*nums[j]);
+                j++;
+            }
+        } 
+        //if i>0 means may be the case where j>=n but i>0
+        while(i>=0){
+            temp.push_back(nums[i]*nums[i]);
+            i--;
+        }
+        //similarly may be the case that j<n and i>=0
+        while(j<nums.size()){
+            temp.push_back(nums[j]*nums[j]);
+            j++;
+        }
+        return temp;
+}
+
+//Method 3-> 
+//Another efficient solution is based on the two-pointer method as the array is already sorted we can compare the first and last element to check which is bigger and proceed with the result.
+//Time Complexity-> O(N)
+//Space Complexity->O(N)
+
+//C++ Code->
+
+// CPP code for the above approach
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Function to sort an square array
+vector <int> sortSquares(vector<int>& arr, int n)
+{
+    int left = 0, right = n - 1;
+    vector<int>result;
+ 
+    // Iterate from n - 1 to 0
+    for (int index = n - 1; index >= 0; index--) {
+       
+        // Check if abs(arr[left]) is greater
+        // than arr[right]
+        if (abs(arr[left]) > arr[right]) {
+            result[index] = arr[left] * arr[left];
+            left++;
+        }
+        else {
+            result[index] = arr[right] * arr[right];
+            right--;
+        }
+    }
+    return result;
+}
+
+
+Thanks !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
