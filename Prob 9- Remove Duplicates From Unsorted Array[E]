@@ -1,0 +1,29 @@
+//by Raja Bhavesh
+//Difficulty  Level-> Easy
+//Question link-> https://practice.geeksforgeeks.org/problems/remove-duplicates-from-unsorted-array4141/1
+//Method 1->
+//use unordered map to store the character frequency and create another vector which store the all elements after deleting the dulicate.
+//how we delete the duplicates is quite intersting first we mapp all element to their respective frequecy
+//then we again travel the provided array and check if matching value of element in map is greater than equal to 1 we push back this element and update the mapping value to negative value so that again if this cahrater comes we are not able to store it.
+
+
+//Time Complexity-> O(N)
+//Space Complexity-> O(N)
+
+//C++ Code->
+
+ vector<int> removeDuplicate(int A[], int N) {
+       unordered_map<int,int>mp;
+        for(int i=0;i<N;i++){
+            mp[A[i]]++;
+        }
+        vector<int>ans;
+        for(int i=0;i<N;i++){
+            if(mp[A[i]]>=1){
+                ans.push_back(A[i]);
+                mp[A[i]]=-1;
+            }
+        }
+        return ans;
+    }
+//Thanks!!!!!!!!!!!!!!!!!!!!!!!!
