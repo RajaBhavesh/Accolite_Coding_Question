@@ -1,0 +1,54 @@
+//by Raja Bhavesh
+//Question Link-> https://leetcode.com/problems/two-sum/submissions/
+//Difficulty Level-> Easy
+
+//Method 1->
+//In this method by using tow nested loops we check all possible sum and when sum matches with target we store the indexes and save it in vector and return it;
+//Time Complexity-> O(N^2)
+//Space Complexity-> O(1)
+
+// Function to find and print pair
+ vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>ans;
+        for(int i=0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                if(nums[i]+nums[j]==target){
+                    ans.push_back(i);
+                    ans.push_back(j);
+                    break;
+                }
+            }
+            if(ans.size()!=0){
+                break;
+            }
+        }
+        return ans;
+    }
+
+
+//Method 2-> 
+//In this method we use unordered map to map the element
+//if complement of the given element is found then we store the indexes and return it
+
+//Time Complexity-> O(N)
+//Space Complexity-> O(N)
+
+//C++ Code
+ vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>ans;
+        unordered_map<int, int> seen;
+        for(int i=0;i<nums.size();i++){
+             if(seen.find(target-nums[i])!=seen.end()){
+	           // int z=seen.find(target-nums[i]);
+                ans.push_back(seen[target-nums[i]]);
+                ans.push_back(i);
+                break;
+	        }
+	        seen[nums[i]]=i;
+        }
+        return ans;
+    }
+
+
+//Thanks !!!!!!!!!!!!!!!!!!!!!!!!
+
