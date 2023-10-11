@@ -1,0 +1,53 @@
+//by Raja Bhavesh
+//Difficulty Level-> Easy
+//Question Link-> https://practice.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/1
+
+//Method 1-> 
+//Brute force approach is to take use of two nested loop and check the sum of all pairs and match it with target sum 
+//and whenever sum matches with target update count++;
+//Time Complexity-> O(N^2)
+//Space Complexity-> O(1)
+
+//C++ Code
+
+// Returns number of pairs in arr[0..n-1] with sum equal
+// to 'sum'
+int getPairsCount(int arr[], int n, int sum)
+{
+    int count = 0; // Initialize result
+ 
+    // Consider all possible pairs and check their sums
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+            if (arr[i] + arr[j] == sum)
+                count++;
+ 
+    return count;
+}
+
+
+//Method 2-> 
+//Create a map to store the frequency of each number in the array.
+//Check if (K – arr[i]) is present in the map, if present then increment the count variable by its frequency.
+//After traversal is over, return the count.
+
+//Time Complexity-> O(N)
+//Space Complexity-> O(N)
+//C++ Code->
+int getPairsCount(int arr[], int n, int k) {
+        // code here
+         int count=0;//this is used to store all the pairs with given sum=k;
+         //declare the unoreder map to store the elements frequecty . unordered is used because of its propert like searching etc in O(1)
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            if(mp.find(k-arr[i])!=mp.end()){ // if the complement is found in map
+                count=count+mp[k-arr[i]];   //then we update the count 
+            }
+            mp[arr[i]]++;  //and then increment the frequency of the element
+        }
+         return count;
+         
+    }
+
+
+Thanks !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
