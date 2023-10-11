@@ -1,0 +1,54 @@
+//by Raja Bhavesh
+//Difficulty Level-> Medium
+//Question link-> https://practice.geeksforgeeks.org/problems/in-first-but-second5423/1
+
+//Method 1-> 
+//One simple solution is to iterate over arrays and check element by element and flag the missing element when an unmatched element is found
+//Time Complexity-> O(N*M)
+//Space Complexity-> O(1)
+
+//C++ Code->
+int find_Missing(int arr1[], int arr2[], int n1, int n2) {
+   int i, j;
+   bool found;
+   for (i = 0; i < n1; i++) {
+       found = false;
+       for (j = 0; j < n2; j++) {
+           if (arr1[i] == arr2[j]) {
+               found = true;
+               break;
+           }
+       }
+       if (!found) {
+           return arr1[i];
+       }
+   }
+   return -1;
+}
+
+//Method 2-> Using unordered map to store the frquecy of element present in the array 2.
+//then again iterate through array 1 and if frequency of element is 0 mapped in previous unordered map it means that element present in array 1 and not in array 2 then store that element
+
+//Time Complexity-> O(N+M)
+//Space Complexity-> O(M)
+
+//C++ Code-> 
+vector<long long> findMissing(long long A[], long long B[],  
+                 int N, int M) 
+	{ 
+	    // Your code goes here
+	    vector<long long> ans;
+	    unordered_map<int,int>mp;
+	    for(int i=0;i<M;i++){
+	        mp[B[i]]++;
+	    }
+	    for(int i=0;i<N;i++){
+	        if(mp[A[i]]==0){
+	            ans.push_back(A[i]);
+	        }
+	    }
+	    return ans;
+	} 
+
+
+//Thanks !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
