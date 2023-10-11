@@ -1,0 +1,41 @@
+//by Raja Bhavesh
+//Difficulty Level-> Easy
+//Question Link-> https://practice.geeksforgeeks.org/problems/reverse-a-string/1
+
+//Method 1-> 
+//using two pointer approach 
+//The idea is to use two pointers. The left pointer is placed at the beginning of the string and the right pointer is placed at the end of the string.
+//Now swap the characters at left and right pointers,
+//after that left pointer moves forward by 1 step and right pointer moves backward by 1 step. This operation is continued till right pointer is ahead of left pointer.
+//Time Complexity-> O(N)
+//Space Complexity-> O(1)
+
+//C++ Code->
+string reverseStr(string& str)
+{
+    int n = str.length();
+ 
+    // Swap character starting from two
+    // corners
+    // i is the left pointer and j is the right pointer
+    for (int i = 0, j = n - 1; i < j; i++, j--)
+        swap(str[i], str[j]);
+    return str;
+}
+
+
+
+//Method 2-> using inbuilt functions
+//Time Complexity-> O(N)
+//Space Complexity-> O(1)
+
+//C++ Code->
+
+string reverseStr(string& str)
+{
+    reverse(str.begin(),str.end());
+    return str;
+}
+
+
+//Thanks!!!!!!!!!!!!!!!!!!!!!!!!!!
